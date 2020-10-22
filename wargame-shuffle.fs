@@ -20,23 +20,19 @@ printf "%A" c
 //randomfunktion - makes random list 
 let rand (n:int) =
     let rnd = System.Random()
-    List.init n (fun _ -> rnd.Next (0,n))
+    List.init n (fun _ -> rnd.Next (0,15))
 
-let deck1 = rand 52
+let deck1 = rand 10
 printfn "%A" deck1
 
-//shuffle funktion, shuffle random list. 
+//shuffle funktion, shuffle random list. Is however predictable. 
 let shuffle (de:deck) : deck =
     let divide = (List.length de) / 2
-    de
-    |> List.mapi (fun x y -> (if x < divide then x *2 else ((x-divide)*2)+1), y)
-    |> List.sortBy fst 
-    |> List.map snd
+    let a = List.mapi (fun x y -> (if x < divide then x * 2 else ((x-divide)*2)+1), y) de
+    let b = List.sortBy fst a
+    List.map snd b
 
 let f = shuffle(deck1)
 
 //newdeck - skla lave et dæk af 4 serier med 2-14 tal (et reelt kortdæk)
-let newdeck() : deck=
-
-
- 
+let newdeck() : deck =
