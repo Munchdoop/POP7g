@@ -18,14 +18,14 @@ printf "%A" b
 printf "%A" c
 
 //randomfunktion - makes random list 
-let rand (n:int) =
+let randlist (n:int) =
     let rnd = System.Random()
     List.init n (fun _ -> rnd.Next (0,15))
 
-let deck1 = rand 10
+let deck1 = randlist 10
 printfn "%A" deck1
 
-//shuffle funktion, shuffle random list. Is however predictable. 
+//shuffle funktion, uses perfect shuffle (see faro shuffle)
 let shuffle (de:deck) : deck =
     let divide = (List.length de) / 2
     let a = List.mapi (fun x y -> (if x < divide then x * 2 else ((x-divide)*2)+1), y) de
